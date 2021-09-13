@@ -1,0 +1,5 @@
+
+
+I - refresh MiniLibx DONE
+II - load Images
+III - fix a sigfault
