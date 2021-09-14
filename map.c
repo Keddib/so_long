@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 13:38:35 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/13 18:11:40 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 13:55:55 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,33 @@ int is_this_wall(float x, float y, t_all *all)
 	return 0;
 }
 
+
+void	render_wall(t_all *all, int x, int y)
+{
+	printf("c = %d\n", all->tex.data[2][0]);
+	int p, p1, i;
+	p1 = y;
+	p = x;
+	i = 0;
+	while (y < p1 + TILE_SIZE)
+	{
+		x = p;
+		while (x < p + TILE_SIZE)
+		{
+			my_mlx_pixel_put(&mlx, x, y, 0xFFF);
+			i++;
+			x++;
+		}
+		y++;
+	}
+}
+
 void map_render(t_all *all)
 {
 	int i = 0;
 	int j = 0;
 	int tile_x = 0;
 	int tile_y = 0;
-	int color;
 
 	while (i < MAP_NUM_ROWS)
 	{
@@ -61,10 +81,9 @@ void map_render(t_all *all)
 			tile_x = j * TILE_SIZE;
 			tile_y = i * TILE_SIZE;
 			if (all->array[i][j] == '1')
-				color = 0xfff;
+				render_wall(all, tile_x, tile_y);
 			else
-				color = 15335423;
-			ft_square(tile_x, tile_y, color);
+				ft_square(tile_x, tile_y, 15335423);
 			j++;
 		}
 		i++;

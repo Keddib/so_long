@@ -1,5 +1,6 @@
 
 
 I - refresh MiniLibx DONE
-II - load Images
-III - fix a sigfault
+II - load Images DONE
+III - fix a sigfault DONE
+IIII - find a way to add texture to walls
