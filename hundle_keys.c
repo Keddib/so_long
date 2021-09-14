@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 13:14:17 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 14:01:16 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 18:15:00 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,39 +14,24 @@
 
 int		key_pressed(int key, t_all *all)
 {
+	printf("key = %d\n", key);
 	if (key == 53)
 		ft_exit(0, all);
-	else if (key == 13)
-		all->fpp.walk_direction = +1;
-	else if (key == 1)
-		all->fpp.walk_direction = -1;
-	else if (key == 2)
-		all->fpp.side_direction = +1;
-	else if (key == 0)
-		all->fpp.side_direction = -1;
-	else if (key == 124)
-		all->fpp.turn_direction = +1;
-	else if (key == 123)
-		all->fpp.turn_direction = -1;
-	else if (key == 126)
-		all->win.look = 1;
-	else if (key == 125)
-		all->win.look = -1;
+	else if (key == 13) // w
+		all->fpp.y_direction = -1;
+	else if (key == 1) // s
+		all->fpp.y_direction = +1;
+	else if (key == 2) // d
+		all->fpp.x_direction = +1;
+	else if (key == 0) // a
+		all->fpp.x_direction = -1;
 	return (0);
 }
 
 int		key_released(int key, t_all *all)
 {
-	if (key == 13 || key == 1)
-		all->fpp.walk_direction = 0;
-	else if (key == 2 || key == 0)
-		all->fpp.side_direction = 0;
-	else if (key == 124 || key == 123)
-		all->fpp.turn_direction = 0;
-	else if (key == 126)
-		all->win.look = 0;
-	else if (key == 125)
-		all->win.look = 0;
+	all->fpp.y_direction = 0;
+	all->fpp.x_direction = 0;
 	return (0);
 }
 

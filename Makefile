@@ -6,15 +6,15 @@
 #    By: keddib <keddib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/24 23:20:45 by keddib            #+#    #+#              #
-#    Updated: 2021/09/14 13:59:54 by keddib           ###   ########.fr        #
+#    Updated: 2021/09/14 17:39:54 by keddib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Game
 
-SRCS = main.c hundle_keys.c map.c utils.c
+SRCS = main.c hundle_keys.c map.c utils.c player.c
 
-OBJS = main.o hundle_keys.o map.o utils.o
+OBJS = main.o hundle_keys.o map.o utils.o player.o
 
 FLAGS =  -lmlx -framework OpenGL -framework AppKit -lm
 

@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:13:27 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 16:09:02 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 18:11:51 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,41 +18,40 @@
 
 void setup_player(t_all *all)
 {
-    all->fpp.x =
-    all->fpp.y =
-    player.x = window.width / 2;
-    player.y = window.height / 2;
-    player.rotation_angle = M_PI / 2;
-    player.walk_direction = 0;
-    player.side_direction = 0;
-    player.turn_direction = 0;
-    player.move_speed = 0;
+    int i = 0;
+	int j = 0;
+	int tile_x = 0;
+	int tile_y = 0;
+
+	while (i < MAP_NUM_ROWS)
+	{
+		j = 0;
+		while (j < MAP_NUM_COLS)
+		{
+			if (all->array[i][j] == 'P')
+            {
+                tile_x = j * TILE_SIZE;
+			    tile_y = i * TILE_SIZE;
+
+            }
+			j++;
+		}
+		i++;
+	}
+    all->fpp.x = tile_x;
+    all->fpp.y = tile_y;
 }
 
-void update_player()
+void update_player(t_all *all)
 {
     float new_player_x;
     float new_player_y;
-    float move_step;
-    float side_step;
 
-    player.rotation_angle += player.turn_direction * TURN_SPEED;
-    move_step = player.walk_direction * (WALK_SPEED + player.move_speed);
-    new_player_x = player.x + cos(player.rotation_angle) * move_step;
-    new_player_y = player.y + sin(player.rotation_angle) * move_step;
-    side_step = player.side_direction * WALK_SPEED;
-    new_player_x += cos(player.rotation_angle + (90 * RADIUN)) * side_step;
-    new_player_y += sin(player.rotation_angle + (90 * RADIUN)) * side_step;
-    if (!is_this_wall(new_player_x, new_player_y))
-    {
-        player.x = new_player_x;
-        player.y = new_player_y;
-    }
-}
-
-
-
-void render_player(int x, int y)
-{
-    my_mlx_pixel_put(&mlx, x, y, 0xffffff);
+    new_player_x = all->fpp.x + all->fpp.x_direction * WALK_SPEED;
+    new_player_y = all->fpp.y + all->fpp.y_direction * WALK_SPEED;
+    // if (!is_this_wall(new_player_x, new_player_y, all))
+    // {
+        all->fpp.x = new_player_x;
+        all->fpp.y = new_player_y;
+    // }
 }

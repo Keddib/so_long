@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:17:09 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 16:30:10 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 18:10:14 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ void	initializer(t_all *all)
 int	update(t_all *all)
 {
 	map_render(all);
-	// update_player();
-	//render_player(all->fpp.x, all->dpp.y);
+	update_player(all);
+	render_objects(all, all->fpp.x, all->fpp.y, 3);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
 	return (0);
 }
 
 void	setup(t_all *all)
 {
-	read_file(argv[1], all);
+	// read_file(argv[1], all);
 	mlx.ptr = mlx_init();
 	initializer(all);
 	load_images(all);
@@ -60,10 +60,10 @@ int main()
 {
 	t_all all;
 
-	if (argc != 2)
-		return (0);
-	else
-		check_param(argv[1]);
+	// if (argc != 2)
+	// 	return (0);
+	// else
+	// 	check_param(argv[1]);
 	setup(&all);
 	mlx_loop_hook(mlx.ptr, update, &all);
 	mlx_hook(mlx.win, 2, 1L << 0, key_pressed, &all);

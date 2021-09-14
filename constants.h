@@ -6,16 +6,14 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:44:34 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 14:02:16 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 18:16:05 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
-# define WALK_SPEED 5
-# define TURN_SPEED (3 * RADIUN)
-# define FOV_ANGLE (60 * RADIUN)
+# define WALK_SPEED 4
 # define INT_MAX 2147483647
 # define TILE_SIZE 64
 # define MAP_NUM_ROWS 7
@@ -48,10 +46,8 @@ typedef struct	s_player
 {
 	float	x;
 	float	y;
-	float	rotation_angle;
-	int		turn_direction;
-	int		walk_direction;
-	int		side_direction;
+	int		x_direction;
+	int		y_direction;
 }				t_player;
 
 typedef struct	s_texture

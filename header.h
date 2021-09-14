@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:58:16 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 16:36:11 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 18:08:32 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/uio.h>
 # include <stdio.h>
 # include <stdlib.h>
-
+# include <math.h>
 # include "constants.h"
 # include "mlx.h"
 
@@ -31,5 +31,8 @@ void	*load_images(t_all *all);
 int		key_pressed(int key, t_all *all);
 int		key_released(int key, t_all *all);
 void	map_render(t_all *all);
+void setup_player(t_all *all);
+void update_player();
+void	render_objects(t_all *all, int x, int y, int tex);
 
 #endif
