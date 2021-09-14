@@ -6,26 +6,23 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 13:38:35 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 13:55:55 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 15:59:42 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void ft_square(int x, int y, int color)
+void free_space(int x, int y, int color)
 {
 	int p, p1;
 	p1 = y;
 	p = x;
 
-	while (y < p1 + TILE_SIZE)
+	while (y <= p1 + TILE_SIZE)
 	{
 		x = p;
-		while (x < p + TILE_SIZE)
-		{
+		while (x++ <= p + TILE_SIZE)
 			my_mlx_pixel_put(&mlx, x, y, color);
-			x++;
-		}
 		y++;
 	}
 }
@@ -45,23 +42,46 @@ int is_this_wall(float x, float y, t_all *all)
 	return 0;
 }
 
-
-void	render_wall(t_all *all, int x, int y)
+void	render_objects(t_all *all, int x, int y, int tex)
 {
-	printf("c = %d\n", all->tex.data[2][0]);
-	int p, p1, i;
+	int p;
+	int p1;
+	int i;
+
 	p1 = y;
 	p = x;
 	i = 0;
 	while (y < p1 + TILE_SIZE)
 	{
 		x = p;
-		while (x < p + TILE_SIZE)
+		while (x++ < p + TILE_SIZE)
 		{
-			my_mlx_pixel_put(&mlx, x, y, 0xFFF);
+			if (all->tex.data[tex][i] != all->tex.data[tex][0])
+				my_mlx_pixel_put(&mlx, x, y, all->tex.data[tex][i]);
+			else
+				my_mlx_pixel_put(&mlx, x, y, 15335423);
 			i++;
-			x++;
 		}
+		y++;
+	}
+
+}
+
+void	render_wall(t_all *all, int x, int y, int tex)
+{
+
+	int p;
+	int p1;
+	int i;
+
+	p1 = y;
+	p = x;
+	i = 0;
+	while (y < p1 + TILE_SIZE)
+	{
+		x = p;
+		while (x++ < p + TILE_SIZE)
+			my_mlx_pixel_put(&mlx, x, y, all->tex.data[tex][i++]);
 		y++;
 	}
 }
@@ -81,9 +101,13 @@ void map_render(t_all *all)
 			tile_x = j * TILE_SIZE;
 			tile_y = i * TILE_SIZE;
 			if (all->array[i][j] == '1')
-				render_wall(all, tile_x, tile_y);
+				render_wall(all, tile_x, tile_y, 0);
+			else if (all->array[i][j] == 'C')
+				render_objects(all, tile_x, tile_y, 1);
+			else if (all->array[i][j] == 'E')
+				render_wall(all, tile_x, tile_y, 2);
 			else
-				ft_square(tile_x, tile_y, 15335423);
+				free_space(tile_x, tile_y, 15335423);
 			j++;
 		}
 		i++;

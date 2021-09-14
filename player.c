@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:13:27 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/13 18:15:06 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 16:09:02 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 ** here I will setup my player and render it, the update also will be here
 */
 
-void setup_player()
+void setup_player(t_all *all)
 {
+    all->fpp.x =
+    all->fpp.y =
     player.x = window.width / 2;
     player.y = window.height / 2;
-    player.radius = 10;
     player.rotation_angle = M_PI / 2;
     player.walk_direction = 0;
     player.side_direction = 0;

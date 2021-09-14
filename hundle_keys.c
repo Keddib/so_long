@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 13:14:17 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/13 17:46:11 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/14 14:01:16 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ int		key_released(int key, t_all *all)
 
 int		ft_exit(int i, t_all *all)
 {
-	all->rgb.b = 150;
-
 	i = 0;
 	// int j;
 

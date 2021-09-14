@@ -6,7 +6,7 @@
 #    By: keddib <keddib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/24 23:20:45 by keddib            #+#    #+#              #
-#    Updated: 2021/09/14 13:47:16 by keddib           ###   ########.fr        #
+#    Updated: 2021/09/14 13:59:54 by keddib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS = main.o hundle_keys.o map.o utils.o
 
 FLAGS =  -lmlx -framework OpenGL -framework AppKit -lm
 
-GO = gcc -Wall -Wextra -Werror  -fsanitize=address
+GO = gcc #-Wall -Wextra -Werror  -fsanitize=address
 
 all : $(NAME)
 

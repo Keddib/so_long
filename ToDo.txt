@@ -3,4 +3,5 @@
 I - refresh MiniLibx DONE
 II - load Images DONE
 III - fix a sigfault DONE
-IIII - find a way to add texture to walls
+IIII - find a way to add texture to walls DONE
+IIIII - READ file and check error
