@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:17:09 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 18:10:14 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:01:59 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ int	update(t_all *all)
 	map_render(all);
 	update_player(all);
 	render_objects(all, all->fpp.x, all->fpp.y, 3);
+	// check_obejects(all);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
+	all->fpp.y_direction = 0;
+	all->fpp.x_direction = 0;
 	return (0);
 }
 
 void	setup(t_all *all)
 {
-	// read_file(argv[1], all);
+	read_file(all);
 	mlx.ptr = mlx_init();
 	initializer(all);
 	load_images(all);
@@ -56,19 +59,19 @@ void	setup(t_all *all)
 }
 
 
-int main()
+int main(int argc, char **argv)
 {
 	t_all all;
 
-	// if (argc != 2)
-	// 	return (0);
-	// else
-	// 	check_param(argv[1]);
+	if (argc != 2)
+		ft_error(1);
+	else
+	 	check_param(argv[1], &all);
 	setup(&all);
-	mlx_loop_hook(mlx.ptr, update, &all);
-	mlx_hook(mlx.win, 2, 1L << 0, key_pressed, &all);
-	mlx_hook(mlx.win, 3, (1L << 1), key_released, &all);
+	mlx_hook(mlx.win, 2, 0, key_pressed, &all);
+	mlx_hook(mlx.win, 3, 0, key_released, &all);
 	mlx_hook(mlx.win, 17, 0, ft_close, &all);
+	mlx_loop_hook(mlx.ptr, update, &all);
 	mlx_loop(mlx.ptr);
 	return(0);
 }

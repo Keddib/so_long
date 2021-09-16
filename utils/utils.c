@@ -6,11 +6,11 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:16:20 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 15:31:08 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:12:34 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 void	my_mlx_pixel_put(t_data *mlx, int x, int y, int color)
 {
@@ -41,6 +41,22 @@ void	*load_images(t_all *all)
 				&mlx.line_n,
 				&mlx.endian);
 		free(all->tex.img);
+		i++;
+	}
+	return (NULL);
+}
+
+void		*ft_memchr(const void *s, int c, size_t n)
+{
+	size_t			i;
+	unsigned char	*s1;
+
+	s1 = (unsigned char *)s;
+	i = 0;
+	while (i < n && s1[i] != '\0')
+	{
+		if (s1[i] == (unsigned char)c)
+			return (s1 + i);
 		i++;
 	}
 	return (NULL);

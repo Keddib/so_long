@@ -1,0 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/09/16 16:09:18 by keddib            #+#    #+#             */
+/*   Updated: 2021/09/16 17:22:18 by keddib           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../header.h"
+
+
+static int	bsave_ts(char **bsave, char **line)
+{
+	char *p;
+	char *temp;
+
+	temp = NULL;
+	if (*bsave)
+	{
+		if ((p = ft_memchr(*bsave + 1, '\n', 1064)))
+		{
+			*line = ft_substr(*bsave, 1, p - *bsave);
+			temp = *bsave;
+			*bsave = ft_strdup(p);
+			free(temp);
+			return (1);
+		}
+		*line = ft_substr(*bsave, 1, 1064);
+		temp = *bsave;
+		if (temp)
+			free(temp);
+		*bsave = NULL;
+	}
+	return (0);
+}
+
+int			get_next_line(int fd, char **line)
+{
+	int			i;
+	char		*buff;
+	static char *bsave;
+
+	*line = NULL;
+	if ((i = bsave_ts(&bsave, line)) == 1)
+		return (1);
+	buff = malloc((1064 + 1) * sizeof(char));
+	while ((i = read(fd, buff, 1064)) > 0)
+	{
+		buff[i] = 0x00;
+		if ((bsave = ft_memchr(buff, '\n', 1064)))
+		{
+			*line = ft_strjoin(*line,
+					ft_substr(buff, 0, (bsave) - buff), 1);
+			bsave = ft_substr(buff, bsave - buff, i);
+			free(buff);
+			return (1);
+		}
+		*line = ft_strjoin(*line, buff, 0);
+	}
+	if (*line == NULL)
+		*line = ft_strdup("");
+	free(buff);
+	return (i > 0 ? 1 : i);
+}

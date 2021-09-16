@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:44:34 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 18:16:05 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/16 15:38:59 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_player
 	float	y;
 	int		x_direction;
 	int		y_direction;
+	int	steps;
 }				t_player;
 
 typedef struct	s_texture
@@ -63,6 +64,7 @@ typedef struct	s_all
 	t_player	fpp;
 	t_texture	tex;
 	char		**array;
+	int			fd;
 }				t_all;
 
 t_data			mlx;

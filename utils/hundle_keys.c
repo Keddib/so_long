@@ -6,18 +6,17 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 13:14:17 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/14 18:15:00 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/16 16:03:02 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "../header.h"
 
 int		key_pressed(int key, t_all *all)
 {
-	printf("key = %d\n", key);
 	if (key == 53)
 		ft_exit(0, all);
-	else if (key == 13) // w
+	else if (key == 13)
 		all->fpp.y_direction = -1;
 	else if (key == 1) // s
 		all->fpp.y_direction = +1;
@@ -30,6 +29,7 @@ int		key_pressed(int key, t_all *all)
 
 int		key_released(int key, t_all *all)
 {
+	key = 0;
 	all->fpp.y_direction = 0;
 	all->fpp.x_direction = 0;
 	return (0);
@@ -46,6 +46,8 @@ int		ft_exit(int i, t_all *all)
 	// 	// ft_free(all->win.array, all->win.cols);
 	// 	if (i == 100)
 	// 		exit(0);
+	// TODO: DELETE THIS LINE
+	all->fd += 0;
 	mlx_destroy_image(mlx.ptr, mlx.img);
 	mlx_destroy_window(mlx.ptr, mlx.win);
 	free(mlx.ptr);
