@@ -6,15 +6,15 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:10:34 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 16:10:36 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/18 13:51:10 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-size_t		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -22,9 +22,9 @@ size_t		ft_strlen(const char *s)
 	return (i);
 }
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char *sub;
+	char	*sub;
 
 	if (!s)
 		return (NULL);
@@ -42,7 +42,7 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*cpy;
 	int		len;
@@ -62,7 +62,7 @@ char		*ft_strdup(const char *s1)
 	return (cpy);
 }
 
-char		*ft_strjoin(char const *s1, char const *s2, int z)
+char	*ft_strjoin(char const *s1, char const *s2, int z)
 {
 	char	*result;
 	size_t	i;
@@ -70,7 +70,8 @@ char		*ft_strjoin(char const *s1, char const *s2, int z)
 
 	if (s1 == NULL)
 		s1 = ft_strdup("");
-	if (!(result = malloc((ft_strlen(s1) + ft_strlen(s2)) + 1)))
+	result = malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (!result)
 		return (NULL);
 	i = 0;
 	if (i < (ft_strlen(s1) + ft_strlen(s2)))
@@ -91,9 +92,9 @@ char		*ft_strjoin(char const *s1, char const *s2, int z)
 	return ((char *)result);
 }
 
-size_t		ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	if (!dst || !src || !size)

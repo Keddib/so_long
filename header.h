@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:58:16 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/17 16:31:29 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/18 13:41:13 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			key_pressed(int key, t_all *all);
 int			key_released(int key, t_all *all);
 void		map_render(t_all *all);
 void		setup_player(t_all *all);
-void		update_player();
+void		update_player(t_all *all);
 void		render_objects(t_all *all, int x, int y, int tex);
 void		check_param(char *p, t_all *all);
 void		ft_error(int n);
@@ -50,6 +50,8 @@ void		init_array(t_array *a, size_t size);
 void		insert_array(t_array *a, char element);
 void		add_line_to_array(t_array *a, char *line);
 void		free_array(t_array *a);
-
+int			check_dup(char *map, char c);
+void		free_space(int x, int y, int color);
+void		end_game(t_all *all);
 
 #endif

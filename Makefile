@@ -6,7 +6,7 @@
 #    By: keddib <keddib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/24 23:20:45 by keddib            #+#    #+#              #
-#    Updated: 2021/09/17 14:53:58 by keddib           ###   ########.fr        #
+#    Updated: 2021/09/18 13:11:48 by keddib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS =			main.c \
 				$(FOLD)/read_file.c \
 				$(FOLD)/get_next_line.c \
 				$(FOLD)/get_utils.c \
-				$(FOLD)/dynamic_array.c
+				$(FOLD)/dynamic_array.c \
+				$(FOLD)/end_game.c
 
 OBJS =			main.o \
 				hundle_keys.o \
@@ -34,7 +35,8 @@ OBJS =			main.o \
 				read_file.o \
 				get_next_line.o \
 				get_utils.o \
-				dynamic_array.o
+				dynamic_array.o \
+				end_game.o
 
 FLAGS =  -lmlx -framework OpenGL -framework AppKit -lm
 

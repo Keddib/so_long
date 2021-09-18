@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:32:15 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/17 15:42:20 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/18 13:49:43 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ void	ft_error(int n)
 		printf("NOT .ber\n");
 	else if (n == 3)
 		printf("MAP ERROR\n");
+	else if (n == 4)
+		printf("MAP SIZE ERROR\n");
 	exit(1);
 }
 
 void	check_suffix(char *s, char *suf)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -43,9 +45,9 @@ void	check_suffix(char *s, char *suf)
 	}
 }
 
-void check_param(char *p, t_all *all)
+void	check_param(char *p, t_all *all)
 {
-	int fd;
+	int	fd;
 
 	fd = open(p, O_RDONLY);
 	if (fd == -1)
