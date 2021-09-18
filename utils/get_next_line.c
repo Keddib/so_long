@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:09:18 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 17:22:18 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 15:32:17 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int			get_next_line(int fd, char **line)
 		if ((bsave = ft_memchr(buff, '\n', 1064)))
 		{
 			*line = ft_strjoin(*line,
-					ft_substr(buff, 0, (bsave) - buff), 1);
+					ft_substr(buff, 0, (bsave + 1) - buff), 1);
 			bsave = ft_substr(buff, bsave - buff, i);
 			free(buff);
 			return (1);

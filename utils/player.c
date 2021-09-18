@@ -6,58 +6,56 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:13:27 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 17:48:36 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 18:22:53 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
 /*
-** here I will setup my player and render it, the update also will be here
+** here I will render my player, the update also will be here
 */
 
-void setup_player(t_all *all)
+void	render_objects(t_all *all, int x, int y, int tex)
 {
-	int i = 0;
-	int j = 0;
+	int p;
+	int p1;
+	int i;
 
-	while (i < MAP_NUM_ROWS)
+	p1 = y;
+	p = x;
+	i = 0;
+	if (tex == 4)
+		return;
+	while (y < p1 + TILE_SIZE)
 	{
-		j = 0;
-		while (j < MAP_NUM_COLS)
+		x = p;
+		while (x++ < p + TILE_SIZE)
 		{
-			if (all->array[i][j] == 'P')
-			{
-				all->fpp.x = j * TILE_SIZE;
-				all->fpp.y = i * TILE_SIZE;
-				all->fpp.steps = 0;
-				printf("\rSteps : %d |", (int)all->fpp.steps);
-				fflush(stdout);
-			}
-			j++;
+			if (all->tex.data[tex][i] != all->tex.data[tex][0])
+				my_mlx_pixel_put(&mlx, x, y, all->tex.data[tex][i]);
+			i++;
 		}
-		i++;
+		y++;
 	}
 }
 
 int is_this_wall(float x, float y, t_all *all)
 {
-	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HIEGHT)
+	if (x < 0 || x > all->win.width || y < 0 || y > all->win.height)
 		return 1;
 	int index_x;
 	int index_y;
 	index_x = floor((x + 4) / TILE_SIZE);
 	index_y = floor((y + 4) / TILE_SIZE);
-	if (index_y >= MAP_NUM_ROWS  || index_x >= MAP_NUM_COLS)
+	if (index_y >= all->win.rows  || index_x >= all->win.cols)
 		return (1);
-	else if (all->array[index_y][index_x] == '1')
+	else if (all->map.a[(index_y * all->win.cols) + index_x] == '1')
 		return (1);
-	index_x = floor(((x - 4)+TILE_SIZE) / TILE_SIZE);
-	index_y = floor(((y - 4)+TILE_SIZE) / TILE_SIZE);
-	if (index_y >= MAP_NUM_ROWS  || index_x >= MAP_NUM_COLS)
-		return (1);
-	if (all->array[index_y][index_x] == '1')
-		return (1);
+	else if (all->map.a[(index_y * all->win.cols) + index_x] == 'E')
+		if (all->fpp.cols == 0)
+			
+
 	return (0);
 }
 
@@ -73,11 +71,8 @@ void update_player(t_all *all)
 		all->fpp.x = new_player_x;
 		all->fpp.y = new_player_y;
 		if (all->fpp.x_direction || all->fpp.y_direction)
-		{
 			all->fpp.steps += 1;
-			printf("\rSteps : %d |", (int)all->fpp.steps);
-			fflush(stdout);
-		}
-
 	}
+	printf("\rSteps : %d |", (int)all->fpp.steps);
+	fflush(stdout);
 }

@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:17:09 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 16:01:59 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 18:22:00 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,32 @@
 
 void	initializer(t_all *all)
 {
-	char *map = "1111111111111111111111000000000000000000011000C000CC00000P00001100000000111100000001111000000011000C000011E0000000001C00000001111111111111111111111";
-	int i, j, x;
+	int	i;
 
-	all->array = (char **)malloc((MAP_NUM_ROWS + 1)* sizeof(char *));
-	x = 0;
-	for(i=0; i < MAP_NUM_ROWS; i++)
+	all->win.width = (all->win.cols * TILE_SIZE);
+	all->win.height = (all->win.rows * TILE_SIZE);
+	i = 0;
+	all->fpp.found = 0;
+	all->fpp.steps = 0;
+	all->fpp.finish = 0;
+	while ( i < all->win.cols * all->win.rows)
 	{
-		all->array[i] = (char *)malloc(MAP_NUM_COLS + 1);
-		for (j=0; j < MAP_NUM_COLS; j++)
+		if (all->map.a[i] == 'P')
 		{
-			all->array[i][j] = map[x];
-			x++;
+			all->fpp.found = 1;
+			all->fpp.x = (i % all->win.cols) * TILE_SIZE;
+			all->fpp.y = (i / all->win.cols) * TILE_SIZE;
 		}
-		all->array[i][j] = 0x00;
+		i++;
 	}
-	all->array[i] = NULL;
+	// todo cols positions
 }
-
-
 
 int	update(t_all *all)
 {
 	map_render(all);
 	update_player(all);
-	render_objects(all, all->fpp.x, all->fpp.y, 3);
-	// check_obejects(all);
+	render_objects(all, all->fpp.x, all->fpp.y, 3 + all->fpp.finish);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img, 0, 0);
 	all->fpp.y_direction = 0;
 	all->fpp.x_direction = 0;
@@ -48,13 +48,16 @@ int	update(t_all *all)
 
 void	setup(t_all *all)
 {
-	read_file(all);
+	if (!read_file(all))
+	{
+		free_array(&all->map);
+		ft_error(3);
+	}
 	mlx.ptr = mlx_init();
 	initializer(all);
 	load_images(all);
-	setup_player(all);
-	mlx.win = mlx_new_window(mlx.ptr, WIN_WIDTH, WIN_HIEGHT, "SoLong");
-	mlx.img = mlx_new_image(mlx.ptr, WIN_WIDTH, WIN_HIEGHT);
+	mlx.win = mlx_new_window(mlx.ptr, all->win.width, all->win.height, "SoLong");
+	mlx.img = mlx_new_image(mlx.ptr, all->win.width, all->win.width);
 	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.line_n, &mlx.endian);
 }
 

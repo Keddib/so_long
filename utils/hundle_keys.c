@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 13:14:17 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 16:03:02 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 16:31:56 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int		key_pressed(int key, t_all *all)
 {
 	if (key == 53)
-		ft_exit(0, all);
+		ft_exit(all);
 	else if (key == 13)
 		all->fpp.y_direction = -1;
-	else if (key == 1) // s
+	else if (key == 1)
 		all->fpp.y_direction = +1;
-	else if (key == 2) // d
+	else if (key == 2)
 		all->fpp.x_direction = +1;
-	else if (key == 0) // a
+	else if (key == 0)
 		all->fpp.x_direction = -1;
 	return (0);
 }
@@ -35,31 +35,17 @@ int		key_released(int key, t_all *all)
 	return (0);
 }
 
-int		ft_exit(int i, t_all *all)
+void	ft_exit(t_all *all)
 {
-	i = 0;
-	// int j;
-
-	// j = 0;
-	// if (i == 0 || i == 100)
-	// {
-	// 	// ft_free(all->win.array, all->win.cols);
-	// 	if (i == 100)
-	// 		exit(0);
-	// TODO: DELETE THIS LINE
-	all->fd += 0;
+	free_array(&all->map);
 	mlx_destroy_image(mlx.ptr, mlx.img);
 	mlx_destroy_window(mlx.ptr, mlx.win);
 	free(mlx.ptr);
-	// }
-	// else
-	// 	// put message in case of error
 	exit(0);
-	return (0);
 }
 
 int		ft_close(t_all *all)
 {
-	ft_exit(0, all);
+	ft_exit(all);
 	return (0);
 }

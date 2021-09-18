@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 15:32:15 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 16:42:29 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 15:42:20 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	ft_error(int n)
 		printf("NOT .ber\n");
 	else if (n == 3)
 		printf("MAP ERROR\n");
-
 	exit(1);
 }
 

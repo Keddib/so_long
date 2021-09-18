@@ -6,20 +6,16 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:44:34 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 15:38:59 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 18:10:23 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
-# define WALK_SPEED 4
+# define WALK_SPEED 64
 # define INT_MAX 2147483647
 # define TILE_SIZE 64
-# define MAP_NUM_ROWS 7
-# define MAP_NUM_COLS 21
-# define WIN_WIDTH	(TILE_SIZE * MAP_NUM_COLS)
-# define WIN_HIEGHT	(TILE_SIZE * MAP_NUM_ROWS)
 
 
 typedef struct	s_data
@@ -39,7 +35,6 @@ typedef struct	s_win
 	float	height;
 	int		rows;
 	int		cols;
-	int		look;
 }				t_win;
 
 typedef struct	s_player
@@ -48,7 +43,9 @@ typedef struct	s_player
 	float	y;
 	int		x_direction;
 	int		y_direction;
-	int	steps;
+	int		found;
+	int		steps;
+	int		finish;
 }				t_player;
 
 typedef struct	s_texture
@@ -58,12 +55,19 @@ typedef struct	s_texture
 	char			*file[4];
 }				t_texture;
 
+typedef struct	s_array
+{
+	char		*a;
+	size_t		used;
+	size_t		size;
+}				t_array;
+
 typedef struct	s_all
 {
 	t_win		win;
 	t_player	fpp;
 	t_texture	tex;
-	char		**array;
+	t_array		map;
 	int			fd;
 }				t_all;
 

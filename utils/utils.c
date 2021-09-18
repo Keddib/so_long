@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:16:20 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/16 16:12:34 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/17 17:54:45 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	my_mlx_pixel_put(t_data *mlx, int x, int y, int color)
 	char	*dst;
 
 	dst = mlx->addr + (y * mlx->line_n + x * (mlx->bpp / 8));
-	if (x < WIN_WIDTH && x >= 0 && y < WIN_WIDTH && y >= 0)
-		*(unsigned int *)dst = color;
+	*(unsigned int *)dst = color;
 }
 
 void	*load_images(t_all *all)
