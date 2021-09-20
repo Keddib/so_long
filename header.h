@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:58:16 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/18 13:41:13 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/20 13:15:28 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@
 
 int			get_next_line(int fd, char **line);
 size_t		ft_strlen(const char *s);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-char		*ft_strdup(const char *s1);
-char		*ft_strjoin(char const *s1, char const *s2, int z);
+char		*ft_strjoin(char *s, char c);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 void		*ft_memchr(const void *s, int c, size_t n);
 void		ft_exit(t_all *all);
@@ -52,6 +50,7 @@ void		add_line_to_array(t_array *a, char *line);
 void		free_array(t_array *a);
 int			check_dup(char *map, char c);
 void		free_space(int x, int y, int color);
+void		delete_last_char(char *line);
 void		end_game(t_all *all);
 
 #endif

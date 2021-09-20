@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/14 16:31:23 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/18 16:16:27 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/20 15:05:37 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,20 @@ int	middle_line(char *line, int size)
 	return (0);
 }
 
-void	delete_last_char(char *line)
+void	last_line(t_all *all, int cols)
 {
+	char	*line;
+
+	line = all->map.a + (all->map.used - cols);
 	while (*line)
+	{
+		if (*line != '1')
+		{
+			free_array(&all->map);
+			ft_error(3);
+		}
 		line++;
-	line--;
-	*line = 0x00;
+	}
 }
 
 int	read_file(t_all *all)
@@ -87,7 +95,6 @@ int	read_file(t_all *all)
 	init_array(&all->map, TILE_SIZE);
 	while (get_next_line(all->fd, &line))
 	{
-		delete_last_char(line);
 		if (i == 0)
 		{
 			all->win.cols = first_line(line);
@@ -101,7 +108,8 @@ int	read_file(t_all *all)
 		free(line);
 		i++;
 	}
-	all->win.rows = i;
 	free(line);
+	all->win.rows = i;
+	last_line(all, all->win.cols);
 	return (1);
 }

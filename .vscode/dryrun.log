@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/keddib/Desktop/so_long'
+gcc -Wall -Wextra -Werror -g  -c main.c utils/hundle_keys.c utils/map.c utils/utils.c utils/player.c utils/error.c utils/read_file.c utils/get_next_line.c utils/get_utils.c utils/dynamic_array.c utils/end_game.c
+gcc -Wall -Wextra -Werror -g  -o Game main.o hundle_keys.o map.o utils.o player.o error.o read_file.o get_next_line.o get_utils.o dynamic_array.o end_game.o -lmlx -framework OpenGL -framework AppKit -lm
+make: Leaving directory `/Users/keddib/Desktop/so_long'
+ 

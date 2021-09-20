@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:30:56 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/18 13:48:58 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/20 14:34:13 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	init_array(t_array *a, size_t size)
 {
-	a->a = (char *)malloc(size * sizeof(char));
+	a->a = (char *)malloc((size + 1) * sizeof(char));
 	a->used = 0;
+	a->a[size] = 0;
 	a->size = size;
 }
 
@@ -32,6 +33,7 @@ void	insert_array(t_array *a, char element)
 		free(tmp);
 	}
 	a->a[a->used++] = element;
+	a->a[a->used] = '\0';
 }
 
 void	add_line_to_array(t_array *a, char *line)

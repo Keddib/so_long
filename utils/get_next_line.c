@@ -6,63 +6,31 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:09:18 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/17 15:32:17 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/20 14:25:11 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header.h"
 
-
-static int	bsave_ts(char **bsave, char **line)
+int	get_next_line(int fd, char **line)
 {
-	char *p;
-	char *temp;
+	int		i;
+	char	*buff;
 
-	temp = NULL;
-	if (*bsave)
+	buff = (char *)malloc(2);
+	*line = (char *)malloc(1);
+	if (!line || !buff)
+		return (-1);
+	*line[0] = 0x00;
+	i = read(fd, buff, 1);
+	while (i > 0)
 	{
-		if ((p = ft_memchr(*bsave + 1, '\n', 1064)))
-		{
-			*line = ft_substr(*bsave, 1, p - *bsave);
-			temp = *bsave;
-			*bsave = ft_strdup(p);
-			free(temp);
-			return (1);
-		}
-		*line = ft_substr(*bsave, 1, 1064);
-		temp = *bsave;
-		if (temp)
-			free(temp);
-		*bsave = NULL;
+		if (buff[0] == '\n')
+			break ;
+		*line = ft_strjoin(*line, buff[0]);
+		i = read(fd, buff, 1);
 	}
-	return (0);
-}
-
-int			get_next_line(int fd, char **line)
-{
-	int			i;
-	char		*buff;
-	static char *bsave;
-
-	*line = NULL;
-	if ((i = bsave_ts(&bsave, line)) == 1)
-		return (1);
-	buff = malloc((1064 + 1) * sizeof(char));
-	while ((i = read(fd, buff, 1064)) > 0)
-	{
-		buff[i] = 0x00;
-		if ((bsave = ft_memchr(buff, '\n', 1064)))
-		{
-			*line = ft_strjoin(*line,
-					ft_substr(buff, 0, (bsave + 1) - buff), 1);
-			bsave = ft_substr(buff, bsave - buff, i);
-			free(buff);
-			return (1);
-		}
-		*line = ft_strjoin(*line, buff, 0);
-	}
-	if (*line == NULL)
-		*line = ft_strdup("");
 	free(buff);
-	return (i > 0 ? 1 : i);
+	buff = NULL;
+	return (i);
 }

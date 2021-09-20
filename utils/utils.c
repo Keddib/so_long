@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 16:16:20 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/18 16:12:36 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/20 12:49:53 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,12 @@ int	check_dup(char *map, char c)
 	if (found == 0)
 		return (1);
 	return (0);
+}
+
+void	delete_last_char(char *line)
+{
+	while (*line)
+		line++;
+	line--;
+	*line = 0x00;
 }
