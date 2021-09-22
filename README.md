@@ -11,6 +11,8 @@
  This project is a very small 2D game. It is built to make you work with
 textures, sprites. And some very basic gameplay elements.
 
+This project requires MINILIBX, make sur you have installed the required elements to run the minilibX. For more information, check : https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+
 ## How play the game
 To play this game you can use any map of your choice as long follow the following rues:
 
