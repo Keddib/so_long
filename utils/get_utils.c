@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/16 16:10:34 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/20 13:15:17 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/21 12:02:00 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
-// char	*ft_strdup(const char *s1)
-// {
-// 	char	*cpy;
-// 	int		len;
-// 	int		i;
-
-// 	len = ft_strlen(s1);
-// 	cpy = malloc(sizeof(char) * len + 1);
-// 	if (!cpy)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		cpy[i] = s1[i];
-// 		i++;
-// 	}
-// 	cpy[i] = '\0';
-// 	return (cpy);
-// }
 
 char	*ft_strjoin(char *s, char c)
 {

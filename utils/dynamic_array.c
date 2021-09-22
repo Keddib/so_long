@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 14:30:56 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/21 10:54:26 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/21 12:01:09 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	insert_array(t_array *a, char element)
 {
 	char	*tmp;
 
-	if (a->used == a->size || a->used == (a->size - 1))
+	if (a->used == (a->size - 1))
 	{
 		a->size *= 2;
 		tmp = a->a;

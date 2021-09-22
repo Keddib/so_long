@@ -6,11 +6,11 @@
 #    By: keddib <keddib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/24 23:20:45 by keddib            #+#    #+#              #
-#    Updated: 2021/09/21 10:51:19 by keddib           ###   ########.fr        #
+#    Updated: 2021/09/22 16:17:29 by keddib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Game
+NAME = so_long
 
 FOLD = utils
 
@@ -40,11 +40,11 @@ OBJS =			main.o \
 
 FLAGS =  -lmlx -framework OpenGL -framework AppKit -lm
 
-GO = gcc -Wall -Wextra -Werror -g -fsanitize=address
+GO = gcc -Wall -Wextra -Werror #-g
 
 all : $(NAME)
 
-$(NAME):
+$(NAME): $(SRCS)
 	@$(GO) -c $(SRCS)
 	@$(GO) -o $(NAME) $(OBJS) $(FLAGS)
 

@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:58:16 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/20 13:15:28 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/21 12:02:54 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void		add_line_to_array(t_array *a, char *line);
 void		free_array(t_array *a);
 int			check_dup(char *map, char c);
 void		free_space(int x, int y, int color);
-void		delete_last_char(char *line);
 void		end_game(t_all *all);
 
 #endif

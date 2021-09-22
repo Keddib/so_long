@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 15:17:09 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/18 16:11:43 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/22 10:47:01 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ void	initializer(t_all *all)
 	all->win.finish = 0;
 	all->win.width = (all->win.cols * TILE_SIZE);
 	all->win.height = (all->win.rows * TILE_SIZE);
-	if (all->win.width > 2560 || all->win.height > 1440)
-	{
-		free_array(&all->map);
-		ft_error(4);
-	}
 	while (i < all->win.cols * all->win.rows)
 	{
 		if (all->map.a[i] == 'P')
@@ -38,6 +33,7 @@ void	initializer(t_all *all)
 			all->fpp.cols += 1;
 		i++;
 	}
+	printf("Steps : %d\n", (int)all->fpp.steps);
 }
 
 int	update(t_all *all)
@@ -58,8 +54,7 @@ int	update(t_all *all)
 
 void	setup(t_all *all)
 {
-	if (!read_file(all) || check_dup(all->map.a, 'P')
-		|| check_dup(all->map.a, 'E'))
+	if (!read_file(all) || check_dup(all->map.a, 'P'))
 	{
 		free_array(&all->map);
 		ft_error(3);

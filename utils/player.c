@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/13 18:13:27 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/20 12:48:36 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/22 10:46:34 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ void	update_player(t_all *all)
 		all->fpp.x = new_player_x;
 		all->fpp.y = new_player_y;
 		if (all->fpp.x_direction || all->fpp.y_direction)
+		{
 			all->fpp.steps += 1;
+			printf("Steps : %d\n", (int)all->fpp.steps);
+		}
 	}
 	is_this_colls(all->fpp.x, all->fpp.y, all);
-	printf("\rSteps : %d |", (int)all->fpp.steps);
-	fflush(stdout);
 }
